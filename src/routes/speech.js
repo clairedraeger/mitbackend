@@ -52,11 +52,11 @@ router.post('/transcribe', upload.single('audioFile'), async (req, res) => {
                 break;
             }
 
-            const transcriptionText = transcriptionResult.text || "Transcription text not available";
-            console.log("Transcribed:", transcriptionText);
             await new Promise(resolve => setTimeout(resolve, 10000)); 
         }
-
+        
+        const transcriptionText = transcriptionResult.text || "Transcription text not available";
+        console.log("Transcribed:", transcriptionText);
         res.status(200).json(transcriptionResult);
     } catch (error) {
         console.error('Error transcribing audio:', error);
@@ -64,6 +64,5 @@ router.post('/transcribe', upload.single('audioFile'), async (req, res) => {
     }
 });
 
-// Note: Removed the listen route since it relies on MP3 conversion
 
 module.exports = router;
